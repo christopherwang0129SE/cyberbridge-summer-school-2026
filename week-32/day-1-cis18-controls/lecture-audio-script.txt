@@ -1,0 +1,77 @@
+CyberBridge Summer School. Dag 1 resumé. Tirsdag den 4. august, 2026. CIS18 kontrollerne og teknisk operationel sikkerhed, ved Peter Koch, Conscia.
+
+Punkt 1. Hvorfor kløften mellem IT og OT eksisterer.
+
+IT-sikkerhed og OT-sikkerhed, altså industrielle kontrolsystemer, udviklede sig som separate discipliner. Den vigtigste årsag er, at CIA-triaden er vendt om. I IT prioriterer man fortrolighed, derefter integritet, derefter tilgængelighed. I OT prioriterer man tilgængelighed højst, derefter integritet, derefter fortrolighed. En pumpestation kan ikke bare tages offline for at blive patchet.
+
+Andre årsager: OT-udstyr som PLC'er kører femten til femogtyve år, ofte på gammel firmware. Industrielle protokoller som Modbus og DNP3 blev bygget til isolerede netværk, ofte helt uden indbygget autentificering. IT og OT-teams har historisk forskellige rapporteringsveje og risikotolerance. Og i dag smelter IT og OT i stigende grad sammen, uden at sikkerhedsmodenheden har fulgt med.
+
+Punkt 2. Samme afkrydsning, vidt forskellig efficiens.
+
+En kontrol kan være compliant, altså afkrydset, i både IT og OT, men den reelle beskyttelse varierer enormt. Eksempel: sårbarhedshåndtering. I IT scannes og patches automatisk inden for dage. I OT kan man sjældent patche live udstyr, så man bruger kvartalsvise reviews og kompenserende kontroller i stedet. Pointen er: compliance er ikke det samme som reel sikkerhed.
+
+Punkt 3. De syv efficiensdimensioner, fra Peter Kochs artikel, compliant men sikker.
+
+Første dimension: funktionel dybde, altså om løsningen gør mere end minimumskravet.
+Anden dimension: dækning af udrulning, om det dækker alle relevante aktiver.
+Tredje dimension: konfigurationsdybde, standardindstillinger eller hærdet.
+Fjerde dimension: integration og korrelation, deler kontrollen data med andre kontroller.
+Femte dimension: tuning og baselining, er normal adfærd profileret.
+Sjette dimension: responsautomatisering, kan den handle selv eller kun alarmere.
+Syvende dimension: kontinuerlig forbedring, bliver den revideret løbende.
+
+Punkt 4. Sådan lukker du kløften. Seks anbefalinger.
+
+Etabler målbare baselines per kontrol. Valider kontroller mod realistiske angrebsscenarier. Audit konfigurationsdybde, ikke kun tilstedeværelse. Vurder leverandører ud fra egen trusselsprofil. Behandl integration som et kernekrav. Og genbesøg kontrollerne årligt, da effektiviteten falder over tid.
+
+Punkt 5. Arbejdseksempel, fra risiko til kontrol.
+
+Scenariet er en internet-eksponeret PLC på en pumpestation med en ukendt sårbarhed. Risikoen mappes til kontrol syv, sårbarhedshåndtering. Da direkte patching ikke er muligt, bruges en kompenserende kontrol: netværkssegmentering. Kontrollen scores derefter på efficiensdimensionerne, og til sidst valideres den med en kontrolleret test.
+
+Punkt 6. Tema A, fundament. CIS kontrol nummer 1, aktivoverblik.
+
+Aktivoverblik bærer alt, fordi næsten alle de andre sytten kontroller afhænger af det. De fem delelementer er: før en komplet og opdateret aktivliste, hav en proces for uautoriserede enheder, brug aktiv opdagelse dagligt, brug DHCP-logging ugentligt, og brug passiv opdagelse ugentligt. I OT foretrækkes passiv opdagelse, da aktiv scanning kan crashe skrøbelige PLC'er.
+
+Punkt 7. Beskyt og hærd. Kontrol tre og fire.
+
+Kontrol tre, databeskyttelse, handler om klassifikation, dataopgørelse, kryptering, og sikker sletning. Kontrol fire, sikker konfiguration, handler om at fjerne unødvendige services, bruge standardiserede baselines, og aktiv firewallstyring. I OT handler databeskyttelse mest om dataintegritet, ikke fortrolighed, og hærdning bliver ofte netværksbaseret i stedet for direkte på enheden.
+
+Punkt 8. Overvåg og forsvar. Kontrol otte og tretten.
+
+Kontrol otte, logstyring, handler om central logindsamling, tidssynkronisering, og tilstrækkelig opbevaringstid. Kontrol tretten, netværksovervågning og forsvar, handler om trafikanalyse, indtrængningsdetektion, og segmentering. I OT foretrækkes passiv overvågning frem for aktiv blokering.
+
+Punkt 9. De atten CIS-kontroller, kort opsummeret.
+
+De grundlæggende kontroller, et til seks, er: aktivinventar, softwareinventar, databeskyttelse, sikker konfiguration, kontostyring, og adgangsstyring.
+
+De fundamentale kontroller, syv til seksten, er: sårbarhedshåndtering, logstyring, email og browserbeskyttelse, malwareforsvar, datagendannelse, netværksinfrastrukturstyring, netværksovervågning og forsvar, sikkerhedstræning, leverandørstyring, og applikationssikkerhed.
+
+De organisatoriske kontroller, sytten og atten, er: hændelsesrespons og penetrationstest.
+
+Punkt 10. MITRE ATT&CK og Community Defense Model.
+
+ATT&CK er struktureret omkring taktikker, altså angriberens mål, og teknikker, altså de konkrete metoder. Et typisk angreb bevæger sig gennem faser: rekognoscering, indledende adgang, udførelse, persistens, privilegie-eskalering, forsvarsomgåelse, adgang til legitimationsoplysninger, opdagelse, lateral bevægelse, indsamling, kommando og kontrol, eksfiltrering, og til sidst impact.
+
+Community Defense Model kortlægger CIS-safeguards direkte til ATT&CK-teknikker. De mest basale safeguards forsvarer alene mod cirka fireoghalvfjerds procent af alle teknikker, mens alle CIS-safeguards tilsammen dækker cirka seksogfirs procent.
+
+I workshoppen mappede I et faktura-phishing angreb, der udviklede sig til ransomware, til fire til seks ATT&CK-teknikker og de tilhørende CIS-kontroller, og identificerede en skjult afhængighed, for eksempel at backup er ligegyldig, hvis samme kompromitterede admin-konto kan slette den.
+
+Punkt 11. Blok fire, rammer der spiller sammen.
+
+CIS Controls og NIST-rammeværket konkurrerer ikke, de supplerer hinanden. NIST giver den overordnede struktur, CIS giver den konkrete opskrift.
+
+CIS Controls og ISO 27001 konkurrerer heller ikke. ISO 27001 er en certificerbar standard med treoghalvfems kontroller i Annex A, fordelt på fire temaer: organisatoriske, personale, fysiske, og teknologiske. CIS dækker skønsmæssigt tres til halvfjerds procent af de tekniske Annex A-kontroller. ISO beskriver hvad man skal opnå, CIS beskriver hvordan man gør det konkret.
+
+I dansk og europæisk kontekst er NIS2-direktivet også relevant, særligt for kritisk infrastruktur som vandforsyning.
+
+De skjulte afhængigheder, opsummeret: datagendannelse afhænger af adgangsstyring. Multifaktor-autentificering afhænger af sikker konfiguration. Netværksovervågning afhænger af logstyring. Og sårbarhedshåndtering afhænger af aktivinventar.
+
+Punkt 12. Dagens to kerneprincipper.
+
+Først: aktivoverblik bærer alt, fordi kontrol et er afhængighedsroden for næsten alle andre kontroller.
+
+Dernæst: logning er en forudsætning for detektion, fordi netværksovervågning er ubrugelig uden solid logstyring som fundament.
+
+Den røde tråd gennem hele dagen er denne: rammeværker giver strukturen, men reel sikkerhed opstår i det, der binder kontrollerne sammen, ikke i den enkelte afkrydsning.
+
+Det var dagens resumé.
